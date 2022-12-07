@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   createStyles,
   Header,
@@ -98,24 +99,33 @@ export function HeaderResponsive({ links }) {
   const { classes, cx } = useStyles();
 
   const items = links.map((link) => (
-    <a
+    // <a
+    //   key={link.label}
+    //   href={link.link}
+    //   className={cx(classes.link, {
+    //     [classes.linkActive]: active === link.link,
+    //   })}
+    //   onClick={(event) => {
+    //     event.preventDefault();
+    //     setActive(link.link);
+    //     close();
+    //   }}
+    // >
+    //   {link.label}
+    // </a>
+    <Text
       key={link.label}
-      href={link.link}
-      className={cx(classes.link, {
-        [classes.linkActive]: active === link.link,
-      })}
-      onClick={(event) => {
-        event.preventDefault();
-        setActive(link.link);
-        close();
-      }}
+      component={Link}
+      className={cx(classes.link)}
+      variant="link"
+      to={link.link}
     >
       {link.label}
-    </a>
+    </Text>
   ));
 
   return (
-    <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
+    <Header height={HEADER_HEIGHT} mb={32} className={classes.root}>
       <Container className={classes.header}>
         <Text
           variant="gradient"
