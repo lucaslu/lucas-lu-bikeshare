@@ -1,25 +1,30 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Container, MantineProvider } from "@mantine/core";
 
-function App() {
-  const [data, setData] = useState([]);
-  const API_URL = import.meta.env.VITE_BACKEND;
+import { HeaderResponsive as Header } from "./components/Header/HeaderResponsive";
+import BikeCard from "./components/BikeCard/BikeCard";
 
-  useEffect(() => {
-    const getBikes = () => {
-      axios.get(`${API_URL}/bikes`).then((response) => setData(response.data));
-    };
+import { links } from "./data/links.json";
 
-    getBikes();
-  }, []);
+const App = () => {
+  // const API_URL = import.meta.env.VITE_BACKEND;
 
   return (
-    <div className="App">
-      <h1>Hello</h1>
-      <div>{JSON.stringify(data)}</div>
-    </div>
+    <BrowserRouter>
+      <MantineProvider
+        theme={{ primaryColor: "teal" }}
+        withGlobalStyles
+        withNormalizeCSS
+      >
+        <Container>
+          <Header links={links} />
+          <Routes>
+            <Route path="/" element={<BikeCard />} />
+          </Routes>
+        </Container>
+      </MantineProvider>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
