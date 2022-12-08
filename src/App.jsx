@@ -29,14 +29,16 @@ const App = () => {
         withGlobalStyles
         withNormalizeCSS
       >
-        <Container px="xs">
+        <Container>
           <Header links={links} />
-          <Container>
-            <Routes>
-              <Route path="/" element={<BikesList bikes={bikes} />} />
-              <Route path="bikes/:bikeId" element={<BikeDetail />} />
-            </Routes>
-          </Container>
+
+          <Routes>
+            <Route path="/" element={<BikesList bikes={bikes} />} />
+            <Route
+              path="bikes/:bikeId"
+              element={<BikeDetail bikes={bikes} />}
+            />
+          </Routes>
         </Container>
       </MantineProvider>
     </BrowserRouter>
