@@ -117,7 +117,7 @@ export function HeaderResponsive({ links }) {
       key={link.label}
       component={Link}
       className={cx(classes.link)}
-      variant="link"
+      // variant="link"
       to={link.link}
     >
       {link.label}
@@ -125,9 +125,11 @@ export function HeaderResponsive({ links }) {
   ));
 
   return (
-    <Header height={HEADER_HEIGHT} mb={32} className={classes.root}>
-      <Container className={classes.header}>
+    <Header height={HEADER_HEIGHT} mb={16} className={classes.root}>
+      <Container className={classes.header} px={0}>
         <Text
+          component={Link}
+          to="/"
           variant="gradient"
           gradient={{ from: "indigo", to: "cyan", deg: 45 }}
           sx={{ fontFamily: "Greycliff CF, sans-serif" }}
