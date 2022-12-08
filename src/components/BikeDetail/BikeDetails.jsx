@@ -11,9 +11,9 @@ const BikeDetails = ({ bikes }) => {
   return (
     <>
       <Carousel
+        height="100%"
         mx="auto"
         withIndicators
-        height={200}
         dragFree
         slideGap="md"
         align="start"
