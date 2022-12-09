@@ -25,7 +25,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <MantineProvider
-        theme={{ primaryColor: "teal" }}
+        theme={{ primaryColor: "cyan" }}
         withGlobalStyles
         withNormalizeCSS
       >
