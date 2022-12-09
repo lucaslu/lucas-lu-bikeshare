@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { SimpleGrid, TextInput } from "@mantine/core";
 import { IconSearch } from "@tabler/icons";
 
@@ -7,24 +7,25 @@ import BikeCard from "../BikeCard/BikeCard";
 const BikesList = ({ bikes }) => {
   const [search, setSearch] = useState("");
 
-  const handleSearch = (event) => {
-    setSearch(event.target.value);
-  };
-
-  const filteredBikes = bikes.filter(
-    (bike) =>
-      bike.name.toLowerCase().includes(search.toLowerCase()) ||
-      bike.city.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredBikes = useMemo(() => {
+    return bikes.filter((bike) => {
+      return (
+        bike.name.toLowerCase().includes(search.toLowerCase()) ||
+        bike.city.toLowerCase().includes(search.toLowerCase())
+      );
+    });
+  }, [bikes, search]);
 
   return (
     <>
       <TextInput
+        sx={{ maxWidth: "780px", padding: "0 16px", margin: "0 auto" }}
         icon={<IconSearch size={18} stroke={1.5} />}
         placeholder="Start your search by model or City"
         radius="xl"
+        size="md"
         value={search}
-        onChange={handleSearch}
+        onChange={(e) => setSearch(e.target.value)}
         pb={16}
       />
       <SimpleGrid

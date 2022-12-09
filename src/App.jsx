@@ -4,18 +4,23 @@ import { Container, MantineProvider } from "@mantine/core";
 import axios from "axios";
 
 import { HeaderResponsive as Header } from "./components/Header/HeaderResponsive";
-import BikesList from "./components/BikesList/BikesList";
+import AddBike from "./components/AddBike/AddBike";
 import BikeDetail from "./components/BikeDetail/BikeDetails";
+import BikesList from "./components/BikesList/BikesList";
 
 import { links } from "./data/links.json";
 
 const App = () => {
   const [bikes, setBikes] = useState([]);
-  const API_URL = import.meta.env.VITE_BACKEND;
+  const BACKEND = import.meta.env.VITE_BACKEND;
+
+  const handleNewBike = (newBikes) => {
+    setBikes(newBikes);
+  };
 
   useEffect(() => {
     const getBikes = async () => {
-      const { data } = await axios.get(`${API_URL}/bikes`);
+      const { data } = await axios.get(`${BACKEND}/bikes`);
       setBikes(data);
     };
 
@@ -34,9 +39,10 @@ const App = () => {
 
           <Routes>
             <Route path="/" element={<BikesList bikes={bikes} />} />
+            <Route path="bike/:bikeId" element={<BikeDetail bikes={bikes} />} />
             <Route
-              path="bikes/:bikeId"
-              element={<BikeDetail bikes={bikes} />}
+              path="bike/add"
+              element={<AddBike bikes={bikes} onNewBike={handleNewBike} />}
             />
           </Routes>
         </Container>

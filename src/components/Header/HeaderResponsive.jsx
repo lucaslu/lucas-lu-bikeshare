@@ -17,7 +17,7 @@ const HEADER_HEIGHT = 60;
 const useStyles = createStyles((theme) => ({
   root: {
     position: "relative",
-    zIndex: 1,
+    zIndex: 10,
   },
 
   dropdown: {
@@ -99,26 +99,17 @@ export function HeaderResponsive({ links }) {
   const { classes, cx } = useStyles();
 
   const items = links.map((link) => (
-    // <a
-    //   key={link.label}
-    //   href={link.link}
-    //   className={cx(classes.link, {
-    //     [classes.linkActive]: active === link.link,
-    //   })}
-    //   onClick={(event) => {
-    //     event.preventDefault();
-    //     setActive(link.link);
-    //     close();
-    //   }}
-    // >
-    //   {link.label}
-    // </a>
     <Text
       key={link.label}
       component={Link}
-      className={cx(classes.link)}
-      // variant="link"
+      className={cx(classes.link, {
+        [classes.linkActive]: active === link.link,
+      })}
       to={link.link}
+      onClick={(event) => {
+        setActive(link.link);
+        close();
+      }}
     >
       {link.label}
     </Text>

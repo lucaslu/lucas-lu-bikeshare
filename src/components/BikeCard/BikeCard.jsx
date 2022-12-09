@@ -25,7 +25,7 @@ const BikeCard = ({ id, name, city, price }) => {
       p="md"
       radius="lg"
       component={Link}
-      to={`/bikes/${id}`}
+      to={`/bike/${id}`}
       className={classes.card}
     >
       <AspectRatio ratio={16 / 9}>
