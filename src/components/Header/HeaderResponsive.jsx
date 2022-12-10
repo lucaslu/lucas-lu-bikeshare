@@ -9,9 +9,10 @@ import {
   Paper,
   Text,
   Transition,
+  ThemeIcon,
 } from "@mantine/core";
-
 import { useDisclosure } from "@mantine/hooks";
+import { IconBrandStackshare } from "@tabler/icons";
 
 const HEADER_HEIGHT = 60;
 
@@ -119,18 +120,21 @@ export function HeaderResponsive({ links }) {
   return (
     <Header height={HEADER_HEIGHT} mb={16} className={classes.root}>
       <Container className={classes.header} px={0}>
-        <Text
-          component={Link}
-          to="/"
-          variant="gradient"
-          gradient={{ from: "indigo", to: "cyan", deg: 45 }}
-          sx={{ fontFamily: "Greycliff CF, sans-serif" }}
-          ta="center"
-          fz="xl"
-          fw={700}
-        >
-          BikeShare
-        </Text>
+        <Group spacing="xs">
+          <ThemeIcon color="indigo" component={Link} to="/">
+            <IconBrandStackshare />
+          </ThemeIcon>
+          <Text
+            component={Link}
+            to="/"
+            c="indigo"
+            sx={{ fontFamily: "Greycliff CF, sans-serif" }}
+            fz="xl"
+            fw={500}
+          >
+            BikeShare
+          </Text>
+        </Group>
 
         <Group spacing={5} className={classes.links}>
           {items}

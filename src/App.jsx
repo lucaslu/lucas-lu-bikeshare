@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Container, MantineProvider, ColorSchemeProvider } from "@mantine/core";
+import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 import axios from "axios";
 
 import { HeaderResponsive as Header } from "./components/Header/HeaderResponsive";
@@ -13,9 +14,16 @@ import { links } from "./data/links.json";
 
 const App = () => {
   const [bikes, setBikes] = useState([]);
-  const [colorScheme, setColorScheme] = useState("light");
+  // const [colorScheme, setColorScheme] = useState("light");
+  const [colorScheme, setColorScheme] = useLocalStorage({
+    key: "mantine-color-scheme",
+    defaultValue: "light",
+    getInitialValueInEffect: true,
+  });
   const toggleColorScheme = (value) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+
+  useHotkeys([["mod+J", () => toggleColorScheme()]]);
 
   const BACKEND = import.meta.env.VITE_BACKEND;
 
@@ -39,7 +47,7 @@ const App = () => {
         toggleColorScheme={toggleColorScheme}
       >
         <MantineProvider
-          theme={{ colorScheme, primaryColor: "cyan" }}
+          theme={{ colorScheme, primaryColor: "indigo" }}
           withGlobalStyles
           withNormalizeCSS
         >
