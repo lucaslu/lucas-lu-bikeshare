@@ -8,6 +8,7 @@ import { HeaderResponsive as Header } from "./components/Header/HeaderResponsive
 import AddBike from "./components/AddBike/AddBike";
 import BikeDetail from "./components/BikeDetail/BikeDetails";
 import BikesList from "./components/BikesList/BikesList";
+import HomePage from "./pages/HomePage/HomePage";
 import Footer from "./components/Footer/Footer";
 
 import { links } from "./data/links.json";
@@ -26,6 +27,7 @@ const App = () => {
 
   const ref = useRef(null);
 
+  // shortcut ctrl+j to toggle color scheme
   useHotkeys([["mod+J", () => toggleColorScheme()]]);
 
   const BACKEND = import.meta.env.VITE_BACKEND;
@@ -65,13 +67,14 @@ const App = () => {
               <Route
                 path="/"
                 element={
-                  <BikesList
+                  <HomePage
                     bikes={bikes}
                     handleRefClick={handleRefClick}
                     searchRef={ref}
                   />
                 }
               />
+
               <Route
                 path="bike/:bikeId"
                 element={<BikeDetail bikes={bikes} />}
