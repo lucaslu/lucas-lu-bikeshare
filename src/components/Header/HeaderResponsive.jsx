@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
+  Burger,
   createStyles,
-  Header,
   Container,
   Group,
-  Burger,
+  Header,
   Paper,
   Text,
   Transition,
 } from "@mantine/core";
+
 import { useDisclosure } from "@mantine/hooks";
 
 const HEADER_HEIGHT = 60;
@@ -130,6 +131,7 @@ export function HeaderResponsive({ links }) {
         >
           BikeShare
         </Text>
+
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
