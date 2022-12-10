@@ -3,8 +3,9 @@ import { SimpleGrid, TextInput } from "@mantine/core";
 import { IconSearch } from "@tabler/icons";
 
 import BikeCard from "../BikeCard/BikeCard";
+import Hero from "../Hero/Hero";
 
-const BikesList = ({ bikes }) => {
+const BikesList = ({ bikes, handleRefClick, searchRef }) => {
   const [search, setSearch] = useState("");
 
   const filteredBikes = useMemo(() => {
@@ -18,7 +19,9 @@ const BikesList = ({ bikes }) => {
 
   return (
     <>
+      <Hero handleRefClick={handleRefClick} />
       <TextInput
+        ref={searchRef}
         sx={{ maxWidth: "780px", padding: "0 16px", margin: "0 auto" }}
         icon={<IconSearch size={18} stroke={1.5} />}
         placeholder="Start your search by model or City"

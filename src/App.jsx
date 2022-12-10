@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Container, MantineProvider, ColorSchemeProvider } from "@mantine/core";
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
@@ -14,14 +14,17 @@ import { links } from "./data/links.json";
 
 const App = () => {
   const [bikes, setBikes] = useState([]);
-  // const [colorScheme, setColorScheme] = useState("light");
+
   const [colorScheme, setColorScheme] = useLocalStorage({
     key: "mantine-color-scheme",
     defaultValue: "light",
     getInitialValueInEffect: true,
   });
+
   const toggleColorScheme = (value) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+
+  const ref = useRef(null);
 
   useHotkeys([["mod+J", () => toggleColorScheme()]]);
 
@@ -29,6 +32,10 @@ const App = () => {
 
   const handleNewBike = (newBikes) => {
     setBikes(newBikes);
+  };
+
+  const handleRefClick = () => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -55,7 +62,16 @@ const App = () => {
             <Header links={links} />
 
             <Routes>
-              <Route path="/" element={<BikesList bikes={bikes} />} />
+              <Route
+                path="/"
+                element={
+                  <BikesList
+                    bikes={bikes}
+                    handleRefClick={handleRefClick}
+                    searchRef={ref}
+                  />
+                }
+              />
               <Route
                 path="bike/:bikeId"
                 element={<BikeDetail bikes={bikes} />}
