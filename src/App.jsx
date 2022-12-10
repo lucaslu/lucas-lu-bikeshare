@@ -79,6 +79,12 @@ const App = () => {
                 path="bike/:bikeId"
                 element={<BikeDetail bikes={bikes} />}
               />
+
+              <Route
+                path="bike/city/:cityId"
+                element={<BikesList bikes={bikes} />}
+              />
+
               <Route
                 path="bike/add"
                 element={<AddBike bikes={bikes} onNewBike={handleNewBike} />}
