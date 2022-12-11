@@ -7,7 +7,7 @@ import axios from "axios";
 import { HeaderResponsive as Header } from "./components/Header/HeaderResponsive";
 import AddBike from "./components/AddBike/AddBike";
 import BikeDetail from "./components/BikeDetail/BikeDetails";
-import BikesList from "./components/BikesList/BikesList";
+import BrowseByCity from "./components/BrowseByCity/BrowseByCity";
 import HomePage from "./pages/HomePage/HomePage";
 import Footer from "./components/Footer/Footer";
 
@@ -81,8 +81,8 @@ const App = () => {
               />
 
               <Route
-                path="bike/city/:cityId"
-                element={<BikesList bikes={bikes} />}
+                path="city/:cityId"
+                element={<BrowseByCity bikes={bikes} />}
               />
 
               <Route

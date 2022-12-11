@@ -4,19 +4,14 @@ import BikesList from "../../components/BikesList/BikesList";
 import Hero from "../../components/Hero/Hero";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
+import { getBikes } from "../../utils/utils";
+
 const HomePage = ({ bikes, handleRefClick, searchRef }) => {
   const [search, setSearch] = useState("");
 
   const handleOnChange = (e) => setSearch(e.target.value);
 
-  const filteredBikes = useMemo(() => {
-    return bikes.filter((bike) => {
-      return (
-        bike.name.toLowerCase().includes(search.toLowerCase()) ||
-        bike.city.toLowerCase().includes(search.toLowerCase())
-      );
-    });
-  }, [bikes, search]);
+  const filteredBikes = useMemo(() => getBikes(search, bikes), [bikes, search]);
 
   return (
     <main>
