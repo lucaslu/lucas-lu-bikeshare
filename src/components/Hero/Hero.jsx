@@ -7,12 +7,12 @@ import {
   Text,
 } from "@mantine/core";
 import { Link } from "react-router-dom";
+import heroImg from "../../assets/images/hero.jpg";
 
 const useStyles = createStyles((theme) => ({
   hero: {
     position: "relative",
-    backgroundImage:
-      "url(https://images.unsplash.com/photo-1620802090791-fd9420668913?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80)",
+    backgroundImage: `url(${heroImg})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
   },
@@ -69,7 +69,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const Hero = ({ handleRefClick }) => {
+const Hero = ({ onRefClick }) => {
   const { classes } = useStyles();
 
   return (
@@ -87,7 +87,7 @@ const Hero = ({ handleRefClick }) => {
 
         <Button
           component={Link}
-          onClick={handleRefClick}
+          onClick={onRefClick}
           variant="gradient"
           size="md"
           radius="xl"

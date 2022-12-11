@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 
 import BikesList from "../../components/BikesList/BikesList";
+import CityCarousel from "../../components/CityCarousel/CityCarousel";
 import Hero from "../../components/Hero/Hero";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
@@ -15,7 +16,8 @@ const HomePage = ({ bikes, handleRefClick, searchRef }) => {
 
   return (
     <main>
-      <Hero handleRefClick={handleRefClick} />
+      <Hero onRefClick={handleRefClick} />
+      <CityCarousel />
       <SearchBar
         search={search}
         onChange={handleOnChange}
