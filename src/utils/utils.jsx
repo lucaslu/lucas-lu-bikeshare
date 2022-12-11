@@ -6,3 +6,9 @@ export const getBikes = (search, bikes) => {
     );
   });
 };
+
+export const getRandomBikeImage = () => {
+  const BACKEND = "https://lucas-lu-bikeshare-api.herokuapp.com/images/";
+  const randomImage = "bike" + (Math.floor(Math.random() * 10) + 1) + ".jpg";
+  return BACKEND + randomImage;
+};

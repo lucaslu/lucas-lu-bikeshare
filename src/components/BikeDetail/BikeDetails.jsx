@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import { Avatar, Button, Divider, Group, Image, Text } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
 
+import { getRandomBikeImage } from "../../utils/utils";
+
 const BikeDetails = ({ bikes }) => {
   const { bikeId } = useParams();
 
@@ -19,25 +21,13 @@ const BikeDetails = ({ bikes }) => {
         align="start"
       >
         <Carousel.Slide>
-          <Image
-            src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80"
-            alt={name}
-            withPlaceholder
-          />
+          <Image src={getRandomBikeImage()} alt={name} withPlaceholder />
         </Carousel.Slide>
         <Carousel.Slide>
-          <Image
-            src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80"
-            alt={name}
-            withPlaceholder
-          />
+          <Image src={getRandomBikeImage()} alt={name} withPlaceholder />
         </Carousel.Slide>
         <Carousel.Slide>
-          <Image
-            src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80"
-            alt={name}
-            withPlaceholder
-          />
+          <Image src={getRandomBikeImage()} alt={name} withPlaceholder />
         </Carousel.Slide>
       </Carousel>
       <Text fz="xl" fw={600} mt={16}>

@@ -10,6 +10,7 @@ import BikeDetail from "./components/BikeDetail/BikeDetails";
 import BrowseByCity from "./components/BrowseByCity/BrowseByCity";
 import HomePage from "./pages/HomePage/HomePage";
 import Footer from "./components/Footer/Footer";
+import UploadImage from "./components/UploadImage/UploadImage";
 
 import { links } from "./data/links.json";
 
@@ -42,8 +43,12 @@ const App = () => {
 
   useEffect(() => {
     const getBikes = async () => {
-      const { data } = await axios.get(`${BACKEND}/bikes`);
-      setBikes(data);
+      try {
+        const { data } = await axios.get(`${BACKEND}/bikes`);
+        setBikes(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     getBikes();
@@ -89,6 +94,8 @@ const App = () => {
                 path="bike/add"
                 element={<AddBike bikes={bikes} onNewBike={handleNewBike} />}
               />
+
+              <Route path="image" element={<UploadImage />} />
             </Routes>
 
             <Footer />
