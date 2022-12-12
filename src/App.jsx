@@ -8,8 +8,9 @@ import { HeaderResponsive as Header } from "./components/Header/HeaderResponsive
 import AddBike from "./components/AddBike/AddBike";
 import BikeDetail from "./components/BikeDetail/BikeDetails";
 import BrowseByCity from "./components/BrowseByCity/BrowseByCity";
-import HomePage from "./pages/HomePage/HomePage";
+import Faq from "./components/Faq/Faq";
 import Footer from "./components/Footer/Footer";
+import HomePage from "./pages/HomePage/HomePage";
 import UploadImage from "./components/UploadImage/UploadImage";
 
 import { links } from "./data/links.json";
@@ -94,6 +95,8 @@ const App = () => {
                 path="bike/add"
                 element={<AddBike bikes={bikes} onNewBike={handleNewBike} />}
               />
+
+              <Route path="faq" element={<Faq />} />
 
               <Route path="image" element={<UploadImage />} />
             </Routes>
