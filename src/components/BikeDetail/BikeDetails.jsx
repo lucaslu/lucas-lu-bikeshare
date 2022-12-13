@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import { Avatar, Button, Divider, Group, Image, Text } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
 
+import avatarImg from "../../assets/images/avatar.jpg";
+
 import { getRandomBikeImage } from "../../utils/utils";
 
 const BikeDetails = ({ bikes }) => {
@@ -35,10 +37,12 @@ const BikeDetails = ({ bikes }) => {
       </Text>
       <Divider my="md" />
       <Group position="apart">
-        <Text fw={600}>HOSTED BY: {host_name}</Text>
-        <Avatar radius="xl" />
+        <Avatar radius="xl" size="xl" src={avatarImg} />
+        <Button variant="outline">Contact Host</Button>
       </Group>
-      <Button variant="outline">Contact Host</Button>
+      <Text fw={600} pt={16}>
+        HOSTED BY: {host_name}
+      </Text>
       <Divider my="md" />
       <Text fw={600}>DESCRIPTION</Text>
       <Text>{description}</Text>

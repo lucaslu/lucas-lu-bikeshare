@@ -1,16 +1,16 @@
 {
   "links": [
     {
+      "link": "/",
+      "label": "Sign up"
+    },
+    {
       "link": "/bike/add",
       "label": "Become a host"
     },
     {
       "link": "/faq",
       "label": "FAQ"
-    },
-    {
-      "link": "/learn",
-      "label": "Learn"
     },
     {
       "link": "/community",

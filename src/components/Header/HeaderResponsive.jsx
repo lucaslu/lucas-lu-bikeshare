@@ -6,12 +6,16 @@ import {
   Container,
   Group,
   Header,
+  Modal,
   Paper,
   Text,
   Title,
   Transition,
   ThemeIcon,
 } from "@mantine/core";
+
+import SignUp from "../SignUp/signUp";
+
 import { useDisclosure } from "@mantine/hooks";
 import { IconBrandStackshare } from "@tabler/icons";
 
@@ -100,6 +104,11 @@ export function HeaderResponsive({ links }) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
+  const [modalOpened, setModalOpened] = useState(false);
+
+  const handleModalState = (state) => {
+    setModalOpened(state);
+  };
 
   const items = links.map((link) => (
     <Text
@@ -110,6 +119,7 @@ export function HeaderResponsive({ links }) {
       })}
       to={link.link}
       onClick={(event) => {
+        link.label === "Sign up" && setModalOpened(true);
         setActive(link.link);
         close();
       }}
@@ -155,6 +165,13 @@ export function HeaderResponsive({ links }) {
           )}
         </Transition>
       </Container>
+      <Modal
+        opened={modalOpened}
+        onClose={() => setModalOpened(false)}
+        title=""
+      >
+        <SignUp modalState={handleModalState} />
+      </Modal>
     </Header>
   );
 }

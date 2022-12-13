@@ -12,6 +12,7 @@ import Faq from "./components/Faq/Faq";
 import Footer from "./components/Footer/Footer";
 import HomePage from "./pages/HomePage/HomePage";
 import NotFound from "./components/NotFound/NotFound";
+import SignUp from "./components/SignUp/signUp";
 import UploadImage from "./components/UploadImage/UploadImage";
 
 import { links } from "./data/links.json";
@@ -99,6 +100,8 @@ const App = () => {
               />
 
               <Route path="faq" element={<Faq />} />
+
+              <Route path="signup" element={<SignUp />} />
 
               <Route path="image" element={<UploadImage />} />
 
