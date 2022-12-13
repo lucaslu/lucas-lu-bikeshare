@@ -11,6 +11,7 @@ import {
 } from "@mantine/core";
 
 import calgaryImg from "../../assets/images/calgary.jpg";
+import montrealImg from "../../assets/images/montreal.jpg";
 import torontoImg from "../../assets/images/toronto.jpg";
 import vancouverImg from "../../assets/images/vancouver.jpg";
 
@@ -82,6 +83,10 @@ const data = [
   {
     image: `${calgaryImg}`,
     title: "Calgary",
+  },
+  {
+    image: `${montrealImg}`,
+    title: "Montreal",
   },
 ];
 
