@@ -1,0 +1,67 @@
+{
+  "data": [
+    {
+      "title": "About",
+      "links": [
+        {
+          "label": "Team",
+          "link": "#"
+        },
+        {
+          "label": "Policies",
+          "link": "#"
+        },
+        {
+          "label": "Careers",
+          "link": "#"
+        },
+        {
+          "label": "Press",
+          "link": "#"
+        }
+      ]
+    },
+    {
+      "title": "Bikes types",
+      "links": [
+        {
+          "label": "Cargo & Utility",
+          "link": "#"
+        },
+        {
+          "label": "City",
+          "link": "#"
+        },
+        {
+          "label": "Commuter",
+          "link": "#"
+        },
+        {
+          "label": "Off-Road",
+          "link": "#"
+        }
+      ]
+    },
+    {
+      "title": "Community",
+      "links": [
+        {
+          "label": "Join Discord",
+          "link": "#"
+        },
+        {
+          "label": "Follow on Twitter",
+          "link": "#"
+        },
+        {
+          "label": "Email newsletter",
+          "link": "#"
+        },
+        {
+          "label": "Forum",
+          "link": "#"
+        }
+      ]
+    }
+  ]
+}

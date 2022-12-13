@@ -14,6 +14,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import UploadImage from "./components/UploadImage/UploadImage";
 
 import { links } from "./data/links.json";
+import { data } from "./data/footer.json";
 
 const App = () => {
   const [bikes, setBikes] = useState([]);
@@ -100,9 +101,8 @@ const App = () => {
 
               <Route path="image" element={<UploadImage />} />
             </Routes>
-
-            <Footer />
           </Container>
+          <Footer data={data} />
         </MantineProvider>
       </ColorSchemeProvider>
     </BrowserRouter>

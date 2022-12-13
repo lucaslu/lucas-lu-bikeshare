@@ -8,6 +8,7 @@ import {
   Header,
   Paper,
   Text,
+  Title,
   Transition,
   ThemeIcon,
 } from "@mantine/core";
@@ -124,16 +125,15 @@ export function HeaderResponsive({ links }) {
           <ThemeIcon color="indigo" component={Link} to="/">
             <IconBrandStackshare />
           </ThemeIcon>
-          <Text
+          <Title
+            order={2}
             component={Link}
             to="/"
             c="indigo"
             sx={{ fontFamily: "Greycliff CF, sans-serif" }}
-            fz="xl"
-            fw={500}
           >
-            BikeShare
-          </Text>
+            bikrr
+          </Title>
         </Group>
 
         <Group spacing={5} className={classes.links}>
