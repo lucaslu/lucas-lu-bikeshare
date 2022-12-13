@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Container, MantineProvider, ColorSchemeProvider } from "@mantine/core";
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
+import { onAuthStateChanged } from "firebase/auth";
 import axios from "axios";
 
 import { HeaderResponsive as Header } from "./components/Header/HeaderResponsive";
@@ -15,11 +16,13 @@ import NotFound from "./components/NotFound/NotFound";
 import SignUp from "./components/SignUp/signUp";
 import UploadImage from "./components/UploadImage/UploadImage";
 
+import { auth } from "./utils/firebase";
 import { links } from "./data/links.json";
 import { data } from "./data/footer.json";
 
 const App = () => {
   const [bikes, setBikes] = useState([]);
+  const [user, setUser] = useState("");
 
   const [colorScheme, setColorScheme] = useLocalStorage({
     key: "mantine-color-scheme",
@@ -27,15 +30,15 @@ const App = () => {
     getInitialValueInEffect: true,
   });
 
-  const toggleColorScheme = (value) =>
-    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
-
   const ref = useRef(null);
 
   // shortcut ctrl+j to toggle color scheme
   useHotkeys([["mod+J", () => toggleColorScheme()]]);
 
   const BACKEND = import.meta.env.VITE_BACKEND;
+
+  const toggleColorScheme = (value) =>
+    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
   const handleNewBike = (newBikes) => {
     setBikes(newBikes);
@@ -58,6 +61,15 @@ const App = () => {
     getBikes();
   }, []);
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      console.log("user status changed:", currentUser);
+      setUser(currentUser);
+    });
+  }, []);
+
+  console.log(user);
+
   return (
     <BrowserRouter>
       <ColorSchemeProvider
@@ -70,7 +82,7 @@ const App = () => {
           withNormalizeCSS
         >
           <Container>
-            <Header links={links} />
+            <Header links={links} user={user} />
 
             <Routes>
               <Route

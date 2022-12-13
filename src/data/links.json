@@ -5,16 +5,24 @@
       "label": "Sign up"
     },
     {
+      "link": "/",
+      "label": "Log in"
+    },
+    {
+      "link": "/",
+      "label": "Log out"
+    },
+    {
+      "link": "/",
+      "label": "Account"
+    },
+    {
       "link": "/bike/add",
       "label": "Become a host"
     },
     {
       "link": "/faq",
       "label": "FAQ"
-    },
-    {
-      "link": "/community",
-      "label": "Community"
     }
   ]
 }

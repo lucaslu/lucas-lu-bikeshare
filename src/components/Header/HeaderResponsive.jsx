@@ -13,8 +13,11 @@ import {
   Transition,
   ThemeIcon,
 } from "@mantine/core";
+import { signOut } from "firebase/auth";
 
+import Login from "../Login/Login";
 import SignUp from "../SignUp/signUp";
+import { auth } from "../../utils/firebase";
 
 import { useDisclosure } from "@mantine/hooks";
 import { IconBrandStackshare } from "@tabler/icons";
@@ -100,33 +103,90 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function HeaderResponsive({ links }) {
+export function HeaderResponsive({ links, user }) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
   const [modalOpened, setModalOpened] = useState(false);
+  const [modalLoginOpened, setModalLoginOpened] = useState(false);
 
   const handleModalState = (state) => {
     setModalOpened(state);
   };
 
-  const items = links.map((link) => (
-    <Text
-      key={link.label}
-      component={Link}
-      className={cx(classes.link, {
-        [classes.linkActive]: active === link.link,
-      })}
-      to={link.link}
-      onClick={(event) => {
-        link.label === "Sign up" && setModalOpened(true);
-        setActive(link.link);
-        close();
-      }}
-    >
-      {link.label}
-    </Text>
-  ));
+  const handleLoginModalState = (state) => {
+    setModalLoginOpened(state);
+  };
+
+  const handleLogOut = async () => {
+    await signOut(auth);
+  };
+
+  // const items = links.map((link) => (
+  //   <Text
+  //     key={link.label}
+  //     component={Link}
+  //     // className={cx(classes.link, {
+  //     //   [classes.linkActive]: active === link.link,
+  //     // })}
+  //     className={cx(classes.link)}
+  //     to={link.link}
+  //     onClick={(event) => {
+  //       link.label === "Sign up" && setModalOpened(true);
+  //       setActive(link.link);
+  //       close();
+  //     }}
+  //   >
+  //     {link.label}
+  //   </Text>
+  // ));
+
+  const loggedIn = ["Sign up", "Log in"];
+  const loggedOut = ["Log out", "Account"];
+
+  const items = links.map((link) => {
+    if (user && !loggedIn.includes(link.label)) {
+      console.log("inside", link.label);
+      return (
+        <Text
+          key={link.label}
+          component={Link}
+          // className={cx(classes.link, {
+          //   [classes.linkActive]: active === link.link,
+          // })}
+          className={cx(classes.link)}
+          to={link.link}
+          onClick={(event) => {
+            link.label === "Log out" && handleLogOut();
+            // setActive(link.link);
+            close();
+          }}
+        >
+          {link.label}
+        </Text>
+      );
+    } else if (!loggedOut.includes(link.label)) {
+      return (
+        <Text
+          key={link.label}
+          component={Link}
+          // className={cx(classes.link, {
+          //   [classes.linkActive]: active === link.link,
+          // })}
+          className={cx(classes.link)}
+          to={link.link}
+          onClick={(event) => {
+            link.label === "Sign up" && setModalOpened(true);
+            link.label === "Log in" && setModalLoginOpened(true);
+            // setActive(link.link);
+            close();
+          }}
+        >
+          {link.label}
+        </Text>
+      );
+    }
+  });
 
   return (
     <Header height={HEADER_HEIGHT} mb={16} className={classes.root}>
@@ -171,6 +231,13 @@ export function HeaderResponsive({ links }) {
         title=""
       >
         <SignUp modalState={handleModalState} />
+      </Modal>
+      <Modal
+        opened={modalLoginOpened}
+        onClose={() => setModalLoginOpened(false)}
+        title=""
+      >
+        <Login modalState={handleLoginModalState} />
       </Modal>
     </Header>
   );
