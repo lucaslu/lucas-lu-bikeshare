@@ -107,15 +107,15 @@ export function HeaderResponsive({ links, user }) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
-  const [modalOpened, setModalOpened] = useState(false);
-  const [modalLoginOpened, setModalLoginOpened] = useState(false);
+  const [signUpModalOpened, setSignUpModalOpened] = useState(false);
+  const [loginModalOpened, setLoginModalOpened] = useState(false);
 
-  const handleModalState = (state) => {
-    setModalOpened(state);
+  const handleSignUpModalState = (state) => {
+    setSignUpModalOpened(state);
   };
 
   const handleLoginModalState = (state) => {
-    setModalLoginOpened(state);
+    setLoginModalOpened(state);
   };
 
   const handleLogOut = async () => {
@@ -144,48 +144,44 @@ export function HeaderResponsive({ links, user }) {
   const loggedIn = ["Sign up", "Log in"];
   const loggedOut = ["Log out", "Account"];
 
-  const items = links.map((link) => {
-    if (user && !loggedIn.includes(link.label)) {
-      console.log("inside", link.label);
-      return (
-        <Text
-          key={link.label}
-          component={Link}
-          // className={cx(classes.link, {
-          //   [classes.linkActive]: active === link.link,
-          // })}
-          className={cx(classes.link)}
-          to={link.link}
-          onClick={(event) => {
-            link.label === "Log out" && handleLogOut();
-            // setActive(link.link);
-            close();
-          }}
-        >
-          {link.label}
-        </Text>
-      );
-    } else if (!loggedOut.includes(link.label)) {
-      return (
-        <Text
-          key={link.label}
-          component={Link}
-          // className={cx(classes.link, {
-          //   [classes.linkActive]: active === link.link,
-          // })}
-          className={cx(classes.link)}
-          to={link.link}
-          onClick={(event) => {
-            link.label === "Sign up" && setModalOpened(true);
-            link.label === "Log in" && setModalLoginOpened(true);
-            // setActive(link.link);
-            close();
-          }}
-        >
-          {link.label}
-        </Text>
-      );
-    }
+  let filteredLinks = [];
+
+  if (user) {
+    // filteredLinks = links.filter((link) => !loggedIn.includes(link.label));
+    filteredLinks = links.filter(
+      (link) => link.label !== "Sign up" && link.label !== "Log in"
+    );
+  }
+
+  if (!user) {
+    // filteredLinks = links.filter((link) => !loggedOut.includes(link.label));
+    filteredLinks = links.filter(
+      (link) => link.label !== "Log out" && link.label !== "Account"
+    );
+  }
+  console.log(filteredLinks);
+
+  const items = filteredLinks.map((link) => {
+    return (
+      <Text
+        key={link.label}
+        component={Link}
+        // className={cx(classes.link, {
+        //   [classes.linkActive]: active === link.link,
+        // })}
+        className={cx(classes.link)}
+        to={link.link}
+        onClick={(event) => {
+          link.label === "Sign up" && setSignUpModalOpened(true);
+          link.label === "Log in" && setLoginModalOpened(true);
+          link.label === "Log out" && handleLogOut();
+          // setActive(link.link);
+          close();
+        }}
+      >
+        {link.label}
+      </Text>
+    );
   });
 
   return (
@@ -226,18 +222,19 @@ export function HeaderResponsive({ links, user }) {
         </Transition>
       </Container>
       <Modal
-        opened={modalOpened}
-        onClose={() => setModalOpened(false)}
-        title=""
+        opened={signUpModalOpened}
+        onClose={() => setSignUpModalOpened(false)}
       >
-        <SignUp modalState={handleModalState} />
+        <SignUp signUpModalState={handleSignUpModalState} />
       </Modal>
       <Modal
-        opened={modalLoginOpened}
-        onClose={() => setModalLoginOpened(false)}
-        title=""
+        opened={loginModalOpened}
+        onClose={() => setLoginModalOpened(false)}
       >
-        <Login modalState={handleLoginModalState} />
+        <Login
+          loginModalState={handleLoginModalState}
+          signUpModalState={handleSignUpModalState}
+        />
       </Modal>
     </Header>
   );

@@ -8,17 +8,17 @@ import {
   Container,
   Button,
 } from "@mantine/core";
+
 import { auth } from "../../utils/firebase";
 
-const SignUp = ({ modalState }) => {
+const SignUp = ({ signUpModalState }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSignUp = async () => {
     try {
       const user = await createUserWithEmailAndPassword(auth, email, password);
-      console.log("user created", user);
-      modalState(false);
+      signUpModalState(false);
     } catch (error) {
       console.log(error.message);
     }
