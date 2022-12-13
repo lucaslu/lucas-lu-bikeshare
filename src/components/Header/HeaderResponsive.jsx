@@ -159,7 +159,6 @@ export function HeaderResponsive({ links, user }) {
       (link) => link.label !== "Log out" && link.label !== "Account"
     );
   }
-  console.log(filteredLinks);
 
   const items = filteredLinks.map((link) => {
     return (

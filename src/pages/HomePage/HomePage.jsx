@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Text } from "@mantine/core";
 
 import BikesList from "../../components/BikesList/BikesList";
 import CityCarousel from "../../components/CityCarousel/CityCarousel";
@@ -7,7 +8,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 
 import { getBikes } from "../../utils/utils";
 
-const HomePage = ({ bikes, handleRefClick, searchRef }) => {
+const HomePage = ({ bikes, handleRefClick, searchRef, user }) => {
   const [search, setSearch] = useState("");
 
   const handleOnChange = (e) => setSearch(e.target.value);
@@ -16,6 +17,11 @@ const HomePage = ({ bikes, handleRefClick, searchRef }) => {
 
   return (
     <main>
+      {user?.email && (
+        <Text ta="right" fw={500} pb={16}>
+          Welcome {user.email}
+        </Text>
+      )}
       <Hero onRefClick={handleRefClick} />
       <CityCarousel />
       <SearchBar

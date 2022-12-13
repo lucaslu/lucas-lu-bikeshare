@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-  Button,
-  Notification,
-  SimpleGrid,
-  Textarea,
-  TextInput,
-} from "@mantine/core";
+import { Button, Notification, SimpleGrid, TextInput } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { IconCheck, IconX, IconFilePlus } from "@tabler/icons";
 import axios from "axios";
@@ -86,7 +80,7 @@ const AddBike = ({ bikes, onNewBike }) => {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <Textarea
+        <TextInput
           placeholder="Bicycle description"
           label="Bicycle Description"
           value={description}

@@ -92,6 +92,7 @@ const App = () => {
                     bikes={bikes}
                     handleRefClick={handleRefClick}
                     searchRef={ref}
+                    user={user}
                   />
                 }
               />
