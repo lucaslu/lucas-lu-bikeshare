@@ -16,7 +16,7 @@ import {
 import { signOut } from "firebase/auth";
 
 import Login from "../Login/Login";
-import SignUp from "../SignUp/signUp";
+import SignUp from "../SignUp/SignUp";
 import { auth } from "../../utils/firebase";
 
 import { useDisclosure } from "@mantine/hooks";
