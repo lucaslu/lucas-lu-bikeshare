@@ -1,23 +1,33 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
+  Burger,
   createStyles,
-  Header,
   Container,
   Group,
-  Burger,
+  Header,
+  Modal,
   Paper,
   Text,
+  Title,
   Transition,
+  ThemeIcon,
 } from "@mantine/core";
+import { signOut } from "firebase/auth";
+
+import Login from "../Login/Login";
+import SignUp from "../SignUp/signUp";
+import { auth } from "../../utils/firebase";
+
 import { useDisclosure } from "@mantine/hooks";
+import { IconBrandStackshare } from "@tabler/icons";
 
 const HEADER_HEIGHT = 60;
 
 const useStyles = createStyles((theme) => ({
   root: {
     position: "relative",
-    zIndex: 1,
+    zIndex: 10,
   },
 
   dropdown: {
@@ -93,52 +103,76 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function HeaderResponsive({ links }) {
+export function HeaderResponsive({ links, user }) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
+  const [signUpModalOpened, setSignUpModalOpened] = useState(false);
+  const [loginModalOpened, setLoginModalOpened] = useState(false);
 
-  const items = links.map((link) => (
-    // <a
-    //   key={link.label}
-    //   href={link.link}
-    //   className={cx(classes.link, {
-    //     [classes.linkActive]: active === link.link,
-    //   })}
-    //   onClick={(event) => {
-    //     event.preventDefault();
-    //     setActive(link.link);
-    //     close();
-    //   }}
-    // >
-    //   {link.label}
-    // </a>
-    <Text
-      key={link.label}
-      component={Link}
-      className={cx(classes.link)}
-      // variant="link"
-      to={link.link}
-    >
-      {link.label}
-    </Text>
-  ));
+  const handleSignUpModalState = (state) => {
+    setSignUpModalOpened(state);
+  };
+
+  const handleLoginModalState = (state) => {
+    setLoginModalOpened(state);
+  };
+
+  const handleLogOut = async () => {
+    await signOut(auth);
+  };
+
+  let filteredLinks = [];
+
+  if (user) {
+    filteredLinks = links.filter(
+      (link) => link.label !== "Sign up" && link.label !== "Log in"
+    );
+  }
+
+  if (!user) {
+    filteredLinks = links.filter(
+      (link) => link.label !== "Log out" && link.label !== "Account"
+    );
+  }
+
+  const items = filteredLinks.map((link) => {
+    return (
+      <Text
+        key={link.label}
+        component={Link}
+        className={cx(classes.link)}
+        to={link.link}
+        onClick={(event) => {
+          link.label === "Sign up" && setSignUpModalOpened(true);
+          link.label === "Log in" && setLoginModalOpened(true);
+          link.label === "Log out" && handleLogOut();
+          close();
+        }}
+      >
+        {link.label}
+      </Text>
+    );
+  });
 
   return (
     <Header height={HEADER_HEIGHT} mb={16} className={classes.root}>
       <Container className={classes.header} px={0}>
-        <Text
-          component={Link}
-          to="/"
-          variant="gradient"
-          gradient={{ from: "indigo", to: "cyan", deg: 45 }}
-          sx={{ fontFamily: "Greycliff CF, sans-serif" }}
-          ta="center"
-          fz="xl"
-          fw={700}
-        >
-          BikeShare
-        </Text>
+        <Group spacing="xs">
+          <ThemeIcon color="indigo" component={Link} to="/">
+            <IconBrandStackshare />
+          </ThemeIcon>
+          <Title
+            order={2}
+            component={Link}
+            to="/"
+            c="indigo"
+            sx={{ fontFamily: "Greycliff CF, sans-serif" }}
+          >
+            bikrr
+          </Title>
+        </Group>
+
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
@@ -158,6 +192,21 @@ export function HeaderResponsive({ links }) {
           )}
         </Transition>
       </Container>
+      <Modal
+        opened={signUpModalOpened}
+        onClose={() => setSignUpModalOpened(false)}
+      >
+        <SignUp signUpModalState={handleSignUpModalState} />
+      </Modal>
+      <Modal
+        opened={loginModalOpened}
+        onClose={() => setLoginModalOpened(false)}
+      >
+        <Login
+          loginModalState={handleLoginModalState}
+          signUpModalState={handleSignUpModalState}
+        />
+      </Modal>
     </Header>
   );
 }

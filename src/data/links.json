@@ -1,20 +1,28 @@
 {
   "links": [
     {
-      "link": "/about",
-      "label": "Features"
+      "link": "/",
+      "label": "Sign up"
     },
     {
-      "link": "/pricing",
-      "label": "Pricing"
+      "link": "/",
+      "label": "Log in"
     },
     {
-      "link": "/learn",
-      "label": "Learn"
+      "link": "/",
+      "label": "Log out"
     },
     {
-      "link": "/community",
-      "label": "Community"
+      "link": "/",
+      "label": "Account"
+    },
+    {
+      "link": "/bike/add",
+      "label": "Become a host"
+    },
+    {
+      "link": "/faq",
+      "label": "FAQ"
     }
   ]
 }
