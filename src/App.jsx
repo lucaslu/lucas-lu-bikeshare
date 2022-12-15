@@ -63,12 +63,9 @@ const App = () => {
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
-      console.log("user status changed:", currentUser);
       setUser(currentUser);
     });
   }, []);
-
-  console.log(user);
 
   return (
     <BrowserRouter>

@@ -19,7 +19,7 @@ const HomePage = ({ bikes, handleRefClick, searchRef, user }) => {
     <main>
       {user?.email && (
         <Text ta="right" fw={500} pb={16}>
-          Welcome {user.email}
+          👋 Welcome {user.email}
         </Text>
       )}
       <Hero onRefClick={handleRefClick} />

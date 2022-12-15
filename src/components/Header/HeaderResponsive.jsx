@@ -122,39 +122,15 @@ export function HeaderResponsive({ links, user }) {
     await signOut(auth);
   };
 
-  // const items = links.map((link) => (
-  //   <Text
-  //     key={link.label}
-  //     component={Link}
-  //     // className={cx(classes.link, {
-  //     //   [classes.linkActive]: active === link.link,
-  //     // })}
-  //     className={cx(classes.link)}
-  //     to={link.link}
-  //     onClick={(event) => {
-  //       link.label === "Sign up" && setModalOpened(true);
-  //       setActive(link.link);
-  //       close();
-  //     }}
-  //   >
-  //     {link.label}
-  //   </Text>
-  // ));
-
-  const loggedIn = ["Sign up", "Log in"];
-  const loggedOut = ["Log out", "Account"];
-
   let filteredLinks = [];
 
   if (user) {
-    // filteredLinks = links.filter((link) => !loggedIn.includes(link.label));
     filteredLinks = links.filter(
       (link) => link.label !== "Sign up" && link.label !== "Log in"
     );
   }
 
   if (!user) {
-    // filteredLinks = links.filter((link) => !loggedOut.includes(link.label));
     filteredLinks = links.filter(
       (link) => link.label !== "Log out" && link.label !== "Account"
     );
@@ -165,16 +141,12 @@ export function HeaderResponsive({ links, user }) {
       <Text
         key={link.label}
         component={Link}
-        // className={cx(classes.link, {
-        //   [classes.linkActive]: active === link.link,
-        // })}
         className={cx(classes.link)}
         to={link.link}
         onClick={(event) => {
           link.label === "Sign up" && setSignUpModalOpened(true);
           link.label === "Log in" && setLoginModalOpened(true);
           link.label === "Log out" && handleLogOut();
-          // setActive(link.link);
           close();
         }}
       >
