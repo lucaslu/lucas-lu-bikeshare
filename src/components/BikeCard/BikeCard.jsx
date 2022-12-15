@@ -1,32 +1,48 @@
-import { Card, Image, Text } from "@mantine/core";
+import { Link } from "react-router-dom";
+import { createStyles, Card, Image, Text, AspectRatio } from "@mantine/core";
+import { getRandomBikeImage } from "../../utils/utils";
 
-function BikeCard() {
+const useStyles = createStyles((theme) => ({
+  card: {
+    transition: "transform 150ms ease, box-shadow 150ms ease",
+
+    "&:hover": {
+      transform: "scale(1.01)",
+      boxShadow: theme.shadows.md,
+    },
+  },
+
+  title: {
+    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    fontWeight: 600,
+  },
+}));
+
+const BikeCard = ({ id, name, city, price }) => {
+  const { classes } = useStyles();
+
   return (
     <Card
-      shadow="sm"
-      p="xl"
-      component="a"
-      href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-      target="_blank"
+      key={id}
+      p="md"
+      radius="lg"
+      component={Link}
+      to={`/bike/${id}`}
+      className={classes.card}
     >
-      <Card.Section>
-        <Image
-          src="https://images.unsplash.com/photo-1579227114347-15d08fc37cae?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
-          height={160}
-          alt="No way!"
-        />
-      </Card.Section>
+      <AspectRatio ratio={16 / 9}>
+        <Image src={getRandomBikeImage()} alt={name} withPlaceholder />
+      </AspectRatio>
 
-      <Text weight={500} size="lg" mt="md">
-        You&apos;ve won a million dollars in cash!
+      <Text className={classes.title} size="lg" mt={5}>
+        {name}
       </Text>
-
-      <Text mt="xs" color="dimmed" size="sm">
-        Please click anywhere on this card to claim your reward, this is not a
-        fraud, trust us
+      <Text color="dimmed" size="md">
+        {city}
       </Text>
+      <Text fw={500}>${price} CAD</Text>
     </Card>
   );
-}
+};
 
 export default BikeCard;
