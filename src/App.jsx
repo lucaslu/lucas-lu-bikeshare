@@ -13,7 +13,7 @@ import Faq from "./components/Faq/Faq";
 import Footer from "./components/Footer/Footer";
 import HomePage from "./pages/HomePage/HomePage";
 import NotFound from "./components/NotFound/NotFound";
-import SignUp from "./components/SignUp/signUp";
+import SignUp from "./components/SignUp/SignUp";
 import UploadImage from "./components/UploadImage/UploadImage";
 
 import { auth } from "./utils/firebase";
