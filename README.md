@@ -2,7 +2,7 @@
 
 **_bikkr is a platform that allows you to share your personal bike with others. Think of it like a airbnb for bikes!_**
 
-bikkr is my capstone project for Brainstation's 12-week full-stack web development bootcammp. As part of the program, we were tasked with creating a full-stack website from scratch within a two-week period. If you'd like to check it out, you can access it by [clicking here](https://lucas-lu-bikeshare.netlify.app/)
+bikkr is my capstone project for Brainstation's 12-week full-stack web development bootcamp. As part of the program, we were tasked with creating a full-stack website from scratch within a two-week period. If you'd like to check it out, you can access it by [clicking here](https://lucas-lu-bikeshare.netlify.app/)
 
 ## Tech Stack
 
