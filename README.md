@@ -55,9 +55,9 @@ Follow these steps to run a local instance:
    Create a file`.env` as below:
 
    ```shell
-   DB_LOCAL_DBNAME="bikeshare"
-   DB_LOCAL_USER="root"
-   DB_LOCAL_PASSWORD="rootroot"
+   DB_LOCAL_DBNAME=<YOUR DB USERNAME>
+   DB_LOCAL_USER=<YOUR USERNAME>
+   DB_LOCAL_PASSWORD=<YOUR PASSWORD>
    PORT=8080
    ```
 
@@ -82,12 +82,12 @@ Follow these steps to run a local instance:
 
    ```shell
    VITE_BACKEND=http://localhost:8080
-   VITE_FIRE_API_KEY=AIzaSyDlZ2hxgJtkEkCXpatCUhdWxl3qwMlS-nE
-   VITE_FIRE_AUTH_DOM=fir-9-745b3.firebaseapp.com
-   VITE_FIRE_PRJ_ID=fir-9-745b3
-   VITE_FIRE_STG_BKT=fir-9-745b3.appspot.com
-   VITE_FIRE_MSG_ID=621257559494
-   VITE_FIRE_APP_ID=1:621257559494:web:0aefc068f3d0ac04daf6c7
+   VITE_FIRE_API_KEY=<API KEY>
+   VITE_FIRE_AUTH_DOM=<AUTH DOM>
+   VITE_FIRE_PRJ_ID=<PRJ ID>
+   VITE_FIRE_STG_BKT=<STG BKT>
+   VITE_FIRE_MSG_ID=<MSG ID>
+   VITE_FIRE_APP_ID=<APP ID>
    ```
 
 10. Start the React app:
