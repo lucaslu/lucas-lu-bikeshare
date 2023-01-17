@@ -4,6 +4,10 @@
 
 bikkr is my capstone project for Brainstation's 12-week full-stack web development bootcamp. As part of the program, we were tasked with creating a full-stack website from scratch within a two-week period. If you'd like to check it out, you can access it by [clicking here](https://lucas-lu-bikeshare.netlify.app/)
 
+[Click here](https://www.loom.com/share/2dfc0eebeda741449746d103a1b3f62c) to watch my demo presentation.
+
+![Screenshot of bikkr](./demo/screenshot.png)
+
 ## Tech Stack
 
 ### Frontend:
